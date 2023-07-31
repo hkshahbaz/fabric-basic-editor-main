@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css'>
+<link rel='stylesheet' href='https://rawgit.com/ONE-LOGIC/md-color-menu/master/md-color-menu.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div ng-app="app">
+  <div ng-controller="MainController as main" layout="row">
+    <div>
+      <canvas id="c"></canvas>
+    </div>
+    <div flex>
+      <h2 style="text-align: center;">Toolbox</h2>
+      <div>
+        <md-button class="md-raised" ng-click="main.addText()">Add Text
+        </md-button>
+        <md-button class="md-raised" ng-click="main.addRect()">Add Rectangle
+        </md-button>
+        <md-button class="md-raised" ng-click="main.addCircle()">Add Circle
+        </md-button>
+        <md-button class="md-raised" ng-click="main.addTriangle()">Add Triangle
+        </md-button>
+        <md-button class="md-raised" ng-click="main.addImage($event)">Add Image
+        </md-button>
+        <md-button class="md-raised md-warn" ng-click="main.remove()">Remove
+        </md-button>
+      </div>
+      <div ng-show="main.activeObject" class="property-box">
+        <div ng-show="main.activeObject.type !== 'image'">
+          <md-color-menu color="main.color">
+            <div class="colorbox" ng-style="main.getStyle()">
+            </div>
+          </md-color-menu>
+          <span>Fill: {{main.activeObject.fill}}</span>
+        </div>
+        <div>
+          <md-slider-container>
+            <span>Opacity</span>
+            <md-slider
+                       ng-model="main.opacity"
+                       ng-change="main.setOpacity()"
+                       min="0" 
+                       max="100"
+                       step="1"
+                       class="md-primary">
+            </md-slider>
+            <md-input-container>
+              <input  
+                     ng-model="main.opacity"
+                     ng-change="main.setOpacity()" />
+            </md-input-container>
+          </md-slider-container>
+        </div>
+        <div layout="row">
+          <md-button class="md-raised btn-sm" ng-click="main.activeObject.bringForward()">↑
+            <md-tooltip md-direction="bottom">Bring forward</md-tooltip>
+          </md-button>
+          <md-button class="md-raised btn-sm" ng-click="main.activeObject.bringToFront()">⇑
+            <md-tooltip md-direction="bottom">Bring to front</md-tooltip>
+          </md-button>
+          <md-button class="md-raised btn-sm" ng-click="main.activeObject.sendBackwards()">↓
+            <md-tooltip md-direction="bottom">Send backwards</md-tooltip>
+          </md-button>
+          <md-button class="md-raised btn-sm" ng-click="main.activeObject.sendToBack()">⇓
+            <md-tooltip md-direction="bottom">Send to back</md-tooltip>
+          </md-button>
+        </div>
+      </div>
+      <div ng-show="main.activeObject.type === 'i-text'" class="property-box">
+        <div>
+          <span>Font size: {{ main.getFontSize() }}
+          </span><br />
+          <span>Font family: {{main.activeObject.fontFamily}}
+          </span><br />
+          <span>Text align: {{main.activeObject.textAlign}}
+          </span><br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src='https://rawgit.com/ONE-LOGIC/md-color-menu/master/md-color-menu.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

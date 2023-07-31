@@ -1,0 +1,15 @@
+.property-box {
+  padding: 10px; 
+  margin: 5px; 
+  border: 1px solid gainsboro;
+}
+
+.colorbox {
+  width: 70px; 
+  height: 35px; 
+  border: 1px solid black;
+}
+
+.btn-sm {
+  min-width: 50px;
+}
